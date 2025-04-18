@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Would You Rather?</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffaf0;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .question-box {
+      background: #f0e9dc;
+      padding: 1.5rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    button {
+      background-color: #fbe8d3;
+      color: black;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #f1d8b5;
+    }
+
+    #result {
+      margin-top: 1rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <a href="scratch.html">Scratch Paper</a>
+  </div>
+  <br><br>
+  
+  <h1>🤔 Would You Rather...</h1>
+
+  <div class="question-box" id="questionBox">
+    <p id="questionText">Loading question...</p>
+    <button id="option1" onclick="selectOption(1)">Option 1</button>
+    <button id="option2" onclick="selectOption(2)">Option 2</button>
+  </div>
+
+  <button onclick="newQuestion()">🔁 New Question</button>
+
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      { option1: "Be able to fly", option2: "Be invisible" },
+      { option1: "Never have to sleep", option2: "Never have to eat" },
+      { option1: "Live on the moon", option2: "Live under the sea" },
+      { option1: "Speak every language", option2: "Play every instrument" },
+      { option1: "Always be 10 minutes late", option2: "Always be 20 minutes early" },
+      { option1: "Have a rewind button in life", option2: "Have a pause button" },
+      { option1: "Only be able to whisper", option2: "Only be able to shout" },
+      { option1: "Fight one horse-sized duck", option2: "Fight 100 duck-sized horses" },
+      { option1: "Have free Wi-Fi wherever you go", option2: "Have free coffee wherever you go" },
+      { option1: "Time travel to the past", option2: "Time travel to the future" }
+    ];
+
+    let currentQuestion = {};
+
+    function newQuestion() {
+      const randomIndex = Math.floor(Math.random() * questions.length);
+      currentQuestion = questions[randomIndex];
+
+      document.getElementById("questionText").innerText = "Would you rather...";
+      document.getElementById("option1").innerText = currentQuestion.option1;
+      document.getElementById("option2").innerText = currentQuestion.option2;
+      document.getElementById("result").innerText = "";
+    }
+
+    function selectOption(choice) {
+      const chosen = choice === 1 ? currentQuestion.option1 : currentQuestion.option2;
+      document.getElementById("result").innerText = `You chose: "${chosen}" 🤯`;
+    }
+
+    // Load the first question
+    window.onload = newQuestion;
+  </script>
+</body>
+</html>
